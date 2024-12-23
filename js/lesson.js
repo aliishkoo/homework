@@ -22,12 +22,12 @@ const tabContentBlocks = document.querySelectorAll('.tab_content_block');
 const tabs = document.querySelectorAll('.tab_content_item');
 const tabsParent = document.querySelector('.tab_content_items');
 
-let currentTabIndex = 0;
+let currentTabIndex = 0
 
 
 const hideTabContent = () => {
     tabContentBlocks.forEach(item => {
-        item.style.display = 'none';
+        item.style.display = 'none'
     })
     tabs.forEach(item => {
         item.classList.remove('tab_content_item_active');
@@ -42,13 +42,13 @@ const showTabContent = (index = 0) => {
 const autoSwitchTabs = () => {
     currentTabIndex++
     if (currentTabIndex >= tabs.length) {
-        currentTabIndex = 0;
+        currentTabIndex = 0
     }
     hideTabContent()
     showTabContent(currentTabIndex)
 }
 
-setInterval(autoSwitchTabs, 3000);
+setInterval(autoSwitchTabs, 3000)
 
 hideTabContent();
 showTabContent();
@@ -102,9 +102,50 @@ const converter = (element, targetElement) => {
     }
 }
 
-converter(somInput, [usdInput, eurInput]);
-converter(usdInput, [somInput, eurInput]);
-converter(eurInput, [somInput, usdInput]);
+converter(somInput, [usdInput, eurInput])
+converter(usdInput, [somInput, eurInput])
+converter(eurInput, [somInput, usdInput])
+
+// CARD SWITCHER
+
+const cardBlock = document.querySelector('.card');
+const btnNext = document.querySelector('#bnt-next');
+const btnPrev = document.querySelector('#bnt-prev');
+
+let cardId = 199
+
+const fetchCard= (id) => {
+    fetch(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        .then((response) => response.json())
+        .then(({ title, completed, id }) => {
+            cardBlock.innerHTML = `
+                <p>${title}</p>
+                <p>${completed}</p>
+                <span>${id}</span>
+            `;
+        })
+        .catch((error) => {
+            console.error('Download error:', error);
+            cardBlock.innerHTML = <p>Error</p>;
+        })
+}
+
+btnNext.onclick = () => {
+    cardId = cardId === 200 ? 1 : cardId + 1
+    fetchCard(cardId)
+}
+
+btnPrev.onclick = () => {
+    cardId = cardId === 1 ? 200 : cardId - 1
+    fetchCard(cardId)
+}
+
+fetchCard(cardId)
+
+fetch("https://jsonplaceholder.typicode.com/posts")
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error))
 
 
 

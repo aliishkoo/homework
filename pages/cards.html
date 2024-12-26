@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cards</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #0e1f2f;
+            color: white;
+        }
+        header, footer {
+            background-color: #111;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        header {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            gap: 20px;
+        }
+        .card {
+            background: #1b2b3a;
+            border-radius: 8px;
+            width: 300px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card-content {
+            padding: 15px;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffb400;
+        }
+        .card-body {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #ddd;
+        }
+        footer {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <h1>Character cards</h1>
+    </header>
+    <div class="cards-container" id="cards-container">
+    </div>
+    <footer>
+    <p>Cards</p>
+    </footer>
+</body>
+<script src="../js/cards.js"></script>
+</html>

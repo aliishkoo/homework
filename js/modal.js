@@ -34,3 +34,28 @@ const onScroll = () => {
 }
 
 window.addEventListener('scroll', onScroll);
+
+// POST DATA
+
+const form = document.querySelector('form')
+const token = '7920798723:AAHgcZcXe6zvd2pBtHDGYm_7CjNO6M8Ks_w'
+const chat_id = '@aliishkoo_frontent_bot'
+const URL_API = `https://api.telegram.org/bot${token}/sendMessage`
+
+
+form.onsubmit = (event) => {
+    event.preventDefault()
+
+    const {name, phone} = Object.fromEntries(new FormData(form).entries())
+
+    const text = `Имя: ${name}\nНомер: ${phone}`
+
+    fetch(URL_API, {
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+            chat_id: chat_id,
+            text: text,
+        })
+        })
+}

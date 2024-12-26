@@ -35,9 +35,9 @@ const hideTabContent = () => {
 }
 
 const showTabContent = (index = 0) => {
-    tabContentBlocks[index].style.display = 'block'
+    tabContentBlocks[index].style.display = 'block';
     tabs[index].classList.add('tab_content_item_active');
-}
+};
 
 const autoSwitchTabs = () => {
     currentTabIndex++
@@ -125,27 +125,53 @@ const fetchCard= (id) => {
             `;
         })
         .catch((error) => {
-            console.error('Download error:', error);
-            cardBlock.innerHTML = <p>Error</p>;
+            console.error('Download error:', error)
+            cardBlock.innerHTML = `<p>Error</p>`
         })
 }
 
 btnNext.onclick = () => {
-    cardId = cardId === 200 ? 1 : cardId + 1
-    fetchCard(cardId)
-}
+    cardId = cardId === 200 ? 1 : cardId + 1;
+    fetchCard(cardId);
+};
 
 btnPrev.onclick = () => {
-    cardId = cardId === 1 ? 200 : cardId - 1
-    fetchCard(cardId)
-}
+    cardId = cardId === 1 ? 200 : cardId - 1;
+    fetchCard(cardId);
+};
 
 fetchCard(cardId)
 
-fetch("https://jsonplaceholder.typicode.com/posts")
+fetch(`https://jsonplaceholder.typicode.com/posts`)
     .then(response => response.json())
     .then(data => console.log(data))
     .catch(error => console.error('Error:', error))
+
+// WEATHER
+
+const searchInput = document.querySelector('.cityName');
+const searchButton = document.querySelector('#search');
+const city = document.querySelector('.city');
+const temp = document.querySelector('.temp');
+const weatherIcon = document.querySelector('#weather-icon');
+
+const API_URL = 'http://api.openweathermap.org/data/2.5/weather'
+const API_KEY = 'e417df62e04d3b1b111abeab19cea714'
+
+searchButton.onclick = () => {
+    fetch(`${API_URL}?appid=${API_KEY}&q=${searchInput.value}&units=metric&lang=RU`)
+        .then(response => response.json())
+        .then(data => {
+            city.innerHTML = data.name || 'Город не найден...'
+            temp.innerHTML = data.main?.temp ? Math.round(data.main?.temp) + '&deg;C' : '---'
+            weatherIcon.src = `https://openweathermap.org/img/wn/${data.wether[0].icon}.png`
+        })
+    searchInput.value = ''
+}
+
+// query params
+// optional chaining - ?.
+
 
 
 

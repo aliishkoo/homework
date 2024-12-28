@@ -79,3 +79,45 @@ resetButton.onclick = () => {
     countSeconds = 0
     seconds.innerHTML = countSeconds
 }
+
+// CHARACTERS
+
+document.addEventListener('DOMContentLoaded', () => {
+    const charactersList = document.querySelector('.characters-list');
+
+    fetch('../data/characters.json')
+        .then(response => response.json())
+        .then(characters => {
+            characters.forEach(character => {
+                const characterCard = document.createElement('div');
+                characterCard.className = 'character-card';
+
+                characterCard.innerHTML = `
+          <img src="${character.photo_url}" alt="Фото ${character.name}" class="character-photo">
+          <h3 class="character-name">${character.name}</h3>
+          <p class="character-age">Возраст: ${character.age}</p>       
+          `;
+
+                charactersList.appendChild(characterCard);
+            });
+        })
+        .catch(error => console.error('Download error', error));
+});
+
+// any.json запрос
+
+const xhr = new XMLHttpRequest();
+
+xhr.open('GET', '../data/any.json', true);
+
+xhr.onload = function () {
+    if (xhr.status === 200) {
+        const data = JSON.parse(xhr.responseText);
+
+        console.log('Данные из JSON:', data);
+    } else {
+        console.error('Ошибка загрузки файла:', xhr.status);
+    }
+};
+
+xhr.send();

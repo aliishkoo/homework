@@ -1,52 +1,12 @@
 [
   {
-    "name": "...",
-    "age": 0,
-    "photo_url": "https://link"
-  },
-  {
-    "name": "...",
-    "age": 0,
-    "photo_url": "https://link"
-  },
-  {
-    "name": "...",
-    "age": 0,
-    "photo_url": "https://link"
-  },
-  {
-    "name": "...",
-    "age": 0,
-    "photo_url": "https://link"
-  },
-  {
-    "name": "...",
-    "age": 0,
-    "photo_url": "https://link"
-  },
-  {
-    "name": "...",
-    "age": 0,
-    "photo_url": "https://link"
-  },
-  {
-    "name": "...",
-    "age": 0,
-    "photo_url": "https://link"
-  },
-  {
-    "name": "...",
-    "age": 0,
-    "photo_url": "https://link"
-  },
-  {
-    "name": "...",
-    "age": 0,
-    "photo_url": "https://link"
-  },
-  {
-    "name": "...",
-    "age": 0,
-    "photo_url": "https://link"
+    "name": "Aliya",
+    "age": 17,
+    "address": {
+      "street": "Nayzabekova",
+      "number": "6a"
+    },
+    "color": "blue",
+    "status": "student"
   }
 ]
